@@ -48,12 +48,19 @@ export default function AdminDashboard() {
         return
       }
 
+      if (!entriesRes.ok || !statsRes.ok) {
+        const failedRes = !entriesRes.ok ? entriesRes : statsRes
+        const errBody = await failedRes.json().catch(() => ({}))
+        setError(`Erreur serveur: ${errBody.error || 'inconnue'}`)
+        return
+      }
+
       const [entriesData, statsData] = await Promise.all([
         entriesRes.json(),
         statsRes.json(),
       ])
 
-      setEntries(entriesData)
+      setEntries(Array.isArray(entriesData) ? entriesData : [])
       setStats(statsData)
       setAuthed(true)
       sessionStorage.setItem('admin_pwd', pwd)
