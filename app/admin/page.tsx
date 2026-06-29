@@ -128,6 +128,9 @@ export default function AdminDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
+            <Link href="/" className="text-sm text-gray-400 hover:text-gray-600 transition mb-1 inline-block">
+              ← Retour au chat
+            </Link>
             <h1 className="text-3xl font-bold text-gray-900">Base de connaissance</h1>
             <p className="text-gray-500 mt-1">Gère ton contenu de mentor</p>
           </div>
